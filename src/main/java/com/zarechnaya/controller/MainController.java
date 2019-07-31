@@ -30,9 +30,11 @@ public class MainController {
     public String greeting (Map<String, Object> model){
         return  "greeting";
     }
+
     @GetMapping("/main")
-    public String main(@RequestParam(required = false) String filter, Model model){
+    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model){
         Iterable<Message> messages = messageRepo.findAll();
+
         if (filter !=null && !filter.isEmpty()){
             messages = messageRepo.findByTag(filter);
         }
@@ -52,6 +54,7 @@ public class MainController {
             @RequestParam("file") MultipartFile file
     ) throws IOException {
         Message message = new Message(text, tag, user);
+
         if (file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
 

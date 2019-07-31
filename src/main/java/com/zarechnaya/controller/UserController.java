@@ -33,8 +33,8 @@ public class UserController {
         model.addAttribute("roles", Role.values());
         return "userEdit";
     }
-    @PostMapping
 
+    @PostMapping
     public String userSave(
             @RequestParam String username,
             @RequestParam Map<String, String> form,
